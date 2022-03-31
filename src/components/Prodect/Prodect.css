@@ -1,0 +1,38 @@
+.images img{
+    width: 286px;
+    height: 286px;
+    margin-left: 8px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+.prodect-section{
+    width: 300px;
+    height: 530px;
+    border: 1px solid #95A0A7;
+    border-radius: 8px;
+    position: relative;
+}
+.prodect-info{
+    margin-left: 8px;
+    ;
+    
+}
+.prodect-info h3{
+   margin-top: 5px;
+}
+
+.cart-btn{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 8px;
+    border: none;
+    background-color: #FFE0B3;
+    color: #0E161A;
+    font-size: 15px;
+}
+
+.cart-btn:hover{
+    background-color: orange;
+}
