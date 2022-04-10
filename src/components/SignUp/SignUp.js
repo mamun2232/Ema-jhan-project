@@ -4,87 +4,87 @@ import { FcGoogle } from 'react-icons/fc';
 import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 const SignUp = () => {
-      
+
       const navigate = useNavigate()
 
       const [email, setEmail] = useState('')
-      const [password , setPassword] = useState('')
-      const [confirmPass , setConfirmPass] = useState('')
-      const [errors , setError] = useState('')
+      const [password, setPassword] = useState('')
+      const [confirmPass, setConfirmPass] = useState('')
+      const [errors, setError] = useState('')
       const [user] = useAuthState(auth)
 
-   
+
 
       const [
             createUserWithEmailAndPassword,
-           
-            error ] = useCreateUserWithEmailAndPassword(auth);
 
-      const emailHendeler = e =>{
+            error] = useCreateUserWithEmailAndPassword(auth);
+
+      const emailHendeler = e => {
             setEmail(e.target.value)
       }
-      const passwordHendeler = e =>{
+      const passwordHendeler = e => {
             setPassword(e.target.value)
       }
-      const confrimpassdHendeler = e =>{
+      const confrimpassdHendeler = e => {
             setConfirmPass(e.target.value)
       }
 
-      const Submitfrom = event =>{
+      const Submitfrom = event => {
             event.preventDefault()
-            if(password !== confirmPass){
+            if (password !== confirmPass) {
                   setError('Your Password dont match, please try again')
                   return
             }
             setError('')
-            if(error){
+            if (error) {
                   setError('You All ready Create Account,Please Provide new email')
                   return
             }
-            createUserWithEmailAndPassword(email , password)
+            createUserWithEmailAndPassword(email, password)
 
       }
-     
-      if(user){
+
+      if (user) {
             navigate('/')
       }
       return (
             <div className="from-container">
-            <div>
-            <p className='from-title'>Sign Up</p>
+                  <div>
+                        <p className='from-title'>Sign Up</p>
 
-<form onSubmit={Submitfrom}>
+                        <form onSubmit={Submitfrom}>
 
-      <div className="from-grup">
-            <label  htmlFor="Email">Email</label>
-            <input onBlur={emailHendeler } type="email" name="Email" id="" />
-      </div>
-      <div className="from-grup">
-            <label htmlFor="Password">Password</label>
-            <input onBlur={passwordHendeler} type="password" name="password" id="" />
-      </div>
-      <div className="from-grup">
-            <label htmlFor="Confirm-Password">Confirm Password</label>
-            <input onBlur={confrimpassdHendeler} type="password" name="Confirm-password" id="" />
-            <p>{errors}</p>
-      </div>
+                              <div className="from-grup">
+                                    <label htmlFor="Email">Email</label>
+                                    <input onBlur={emailHendeler} type="email" name="Email" id="" />
+                              </div>
+                              <div className="from-grup">
+                                    <label htmlFor="Password">Password</label>
+                                    <input onBlur={passwordHendeler} type="password" name="password" id="" />
+                              </div>
+                              <div className="from-grup">
+                                    <label htmlFor="Confirm-Password">Confirm Password</label>
+                                    <input onBlur={confrimpassdHendeler} type="password" name="Confirm-password" id="" />
+                                    <p>{errors}</p>
+                              </div>
 
-     <div className="submit-btn">
-     <input type="submit" value="Sign Up" />
-     </div>
-     <p>Allready have on account? <span><Link to='/login'>LogIn</Link></span></p>
-</form>
-<div className="or">
-      <div className='div'></div>
-      <p>or</p>
-      <div className='div'></div>
-</div>
-<div className='google-btn'>
-    <div>
-    <FcGoogle className='icon'></FcGoogle></div> <span className='text'>Continue With Google</span>
-      </div>
+                              <div className="submit-btn">
+                                    <input type="submit" value="Sign Up" />
+                              </div>
+                              <p>Allready have on account? <span><Link to='/login'>LogIn</Link></span></p>
+                        </form>
+                        <div className="or">
+                              <div className='div'></div>
+                              <p>or</p>
+                              <div className='div'></div>
+                        </div>
+                        <div className='google-btn'>
+                              <div>
+                                    <FcGoogle className='icon'></FcGoogle></div> <span className='text'>Continue With Google</span>
+                        </div>
+                  </div>
             </div>
-      </div>
       );
 };
 

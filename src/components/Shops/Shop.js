@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addToDb, getStoreCard } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Prodect from '../Prodect/Prodect';
 import './Shop.css'
 
 const Shop = () => {
-    const [prodects , SetProdect] = useState([])
-     useEffect( () =>{
-         fetch('products.json')
-         .then(res => res.json())
-         .then(data => SetProdect(data))
-     },[])
+    const [prodects, SetProdect] = useState([])
+    useEffect(() => {
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => SetProdect(data))
+    }, [])
 
 
 
-     const [cart , SetCart] = useState([])
-     
-     useEffect(()=>{
-         const storeCart = getStoreCard()
-         const saveCard = []
-         for(const id in storeCart){
-             const addedCart = prodects.find(prodect => prodect.id === id)
-             if(addedCart){
-                 const quantity = storeCart[id]
-                 addedCart.quantity = quantity
-                 saveCard.push(addedCart)
-             }
-         }
-         SetCart(saveCard)
-     },[prodects])
+    const [cart, SetCart] = useState([])
+
+    useEffect(() => {
+        const storeCart = getStoreCard()
+        const saveCard = []
+        for (const id in storeCart) {
+            const addedCart = prodects.find(prodect => prodect.id === id)
+            if (addedCart) {
+                const quantity = storeCart[id]
+                addedCart.quantity = quantity
+                saveCard.push(addedCart)
+            }
+        }
+        SetCart(saveCard)
+    }, [prodects])
 
 
-    const addCart = (prodect) =>{
+    const addCart = (prodect) => {
         console.log(prodect);
-        
-        const newCart = [...cart , prodect]
+
+        const newCart = [...cart, prodect]
         SetCart(newCart)
         addToDb(prodect.id)
         // let newCart = []
@@ -50,7 +51,7 @@ const Shop = () => {
         // }
         // SetCart(newCart)
         // addToDb(prodect.id)
-        
+
 
     }
 
@@ -58,7 +59,7 @@ const Shop = () => {
         <div className='shop-container'>
 
             <div className="prodect-container">
-                
+
                 {
                     prodects.map(prodect => <Prodect
 
@@ -70,10 +71,16 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-            <Cart cart={cart}></Cart>
-                
+                <Cart cart={cart}>
+
+                    <button>Review Order </button>
+
+
+
+                </Cart>
+
             </div>
-            
+
         </div>
     );
 };

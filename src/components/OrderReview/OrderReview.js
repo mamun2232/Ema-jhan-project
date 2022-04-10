@@ -24,11 +24,16 @@ const OrderReview = () => {
                             {
                                   cart.map(prodect => <ReviewItem prodect={prodect}
                                     delect={delectItem}
-                                  ></ReviewItem>)
+                                  >
+                                  </ReviewItem>)
                             }
                        </div>
                        <div className="cart-container">
-                             <Cart cart={cart}></Cart>
+                             <Cart cart={cart}>
+                             <button >Proceed Shipping </button>
+                             
+                            
+                             </Cart>
                        </div>
                  </div>
             </div>
