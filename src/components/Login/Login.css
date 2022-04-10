@@ -1,0 +1,88 @@
+.from-container{
+      width: 500px;
+height: 600px;
+border: 1px solid #95A0A7;
+border-radius: 8px;
+margin: 0 auto;
+/* padding-left: 45px; */
+margin-top: 10px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+.from-title{
+      display: flex;
+justify-content: center;
+align-items: center;
+height: 60px;
+color: #2A414F;
+font-weight: 400;
+font-size: 35px;
+}
+.from-grup{
+      margin-bottom: 20px;
+}
+.from-grup label {
+      display: block;
+      color: 
+      #2A414F;
+      font-size: 20px;
+      margin-bottom: 5px;
+}
+.from-grup input{
+      width: 415px;
+height: 55px;
+border: 1px solid #95A0A7;
+border-radius: 8px;
+font-size: 20px;
+padding: 0px 5px;
+}
+
+.submit-btn input{
+      width: 425px;
+height: 55px;
+background-color: #FF9900
+;
+border: none;
+font-size: 21px;
+border-radius: 8px;
+margin-bottom: 7px;
+}
+span a{
+      color: 
+      #FF9900;
+      text-decoration: none;
+}
+.or{
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+}
+.div{
+      border-bottom: 1px solid gray;
+      width: 100px;
+     margin: 0px 20px;
+}
+
+.google-btn{
+      margin-top: 30px;
+      border: 1px solid 
+      #95A0A7;
+      width: 425px;
+height: 55px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 8px;
+}
+
+.google-btn .icon{
+      font-size: 30px;
+      margin-right: 5px;
+     
+}
+.google-btn .text{
+      font-size: 20px;
+}
