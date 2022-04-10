@@ -1,22 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { FcGoogle } from 'react-icons/fc';
+import auth from '../../firebase.init';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 const Login = () => {
+      const [email, setEmail] = useState('')
+      const [password , setPassword] = useState('')
+      const [errors , setError] = useState('')
+      const navigate = useNavigate()
+      const [user] = useAuthState(auth)
+
+      const [
+            signInWithEmailAndPassword,
+            error,
+          ] = useSignInWithEmailAndPassword(auth);
+      const emailHendeler = e =>{
+            setEmail(e.target.value)
+      }
+      const passwordHendeler = e =>{
+            setPassword(e.target.value)
+      }
+
+      const submitfrom = event =>{
+            event.preventDefault()
+            signInWithEmailAndPassword(email , password)
+      }
+      if(user){
+            navigate('/')
+      }
+
       return (
             <div className="from-container">
                   <div>
                   <p className='from-title'>Log in</p>
 
-<form>
+<form onClick={submitfrom}>
 
       <div className="from-grup">
-            <label htmlFor="Email">Email</label>
-            <input type="email" name="Email" id="" />
+            <label  htmlFor="Email">Email</label>
+            <input onBlur={emailHendeler } type="email" name="Email" id="" />
       </div>
       <div className="from-grup">
             <label htmlFor="Password">Password</label>
-            <input type="password" name="password" id="" />
+            <input onBlur={passwordHendeler} type="password" name="password" id="" />
       </div>
 
      <div className="submit-btn">

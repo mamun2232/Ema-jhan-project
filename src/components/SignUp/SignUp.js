@@ -1,26 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 const SignUp = () => {
+      
+      const navigate = useNavigate()
+
+      const [email, setEmail] = useState('')
+      const [password , setPassword] = useState('')
+      const [confirmPass , setConfirmPass] = useState('')
+      const [errors , setError] = useState('')
+      const [user] = useAuthState(auth)
+
+   
+
+      const [
+            createUserWithEmailAndPassword,
+           
+            error ] = useCreateUserWithEmailAndPassword(auth);
+
+      const emailHendeler = e =>{
+            setEmail(e.target.value)
+      }
+      const passwordHendeler = e =>{
+            setPassword(e.target.value)
+      }
+      const confrimpassdHendeler = e =>{
+            setConfirmPass(e.target.value)
+      }
+
+      const Submitfrom = event =>{
+            event.preventDefault()
+            if(password !== confirmPass){
+                  setError('Your Password dont match, please try again')
+                  return
+            }
+            setError('')
+            if(error){
+                  setError('You All ready Create Account,Please Provide new email')
+                  return
+            }
+            createUserWithEmailAndPassword(email , password)
+
+      }
+     
+      if(user){
+            navigate('/')
+      }
       return (
             <div className="from-container">
             <div>
             <p className='from-title'>Sign Up</p>
 
-<form>
+<form onSubmit={Submitfrom}>
 
       <div className="from-grup">
-            <label htmlFor="Email">Email</label>
-            <input type="email" name="Email" id="" />
+            <label  htmlFor="Email">Email</label>
+            <input onBlur={emailHendeler } type="email" name="Email" id="" />
       </div>
       <div className="from-grup">
             <label htmlFor="Password">Password</label>
-            <input type="password" name="password" id="" />
+            <input onBlur={passwordHendeler} type="password" name="password" id="" />
       </div>
       <div className="from-grup">
             <label htmlFor="Confirm-Password">Confirm Password</label>
-            <input type="password" name="Confirm-password" id="" />
+            <input onBlur={confrimpassdHendeler} type="password" name="Confirm-password" id="" />
+            <p>{errors}</p>
       </div>
 
      <div className="submit-btn">
