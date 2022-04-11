@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { FcGoogle } from 'react-icons/fc';
 import auth from '../../firebase.init';
-import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 const Login = () => {
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
@@ -32,7 +32,19 @@ const Login = () => {
       if (user) {
             navigate(from, { replace: true })
       }
+      const [signInWithGoogle , loading] = useSignInWithGoogle(auth)
 
+      const googleSign = () =>{
+            signInWithGoogle()
+            console.log('clcik');
+
+      }
+      const [sendPasswordResetEmail ] = useSendPasswordResetEmail(auth)
+         
+      const forgatepass = () =>{
+            sendPasswordResetEmail(email)
+            
+      }
 
 
       return (
@@ -56,13 +68,15 @@ const Login = () => {
                                     <input type="submit" value="Log in" />
                               </div>
                               <p>New to ema-jon? <span><Link to='/sign-up'>Create New Account</Link></span></p>
+
+                              <p onClick={forgatepass} className='forgatePass'>Forgate Password?</p>
                         </form>
                         <div className="or">
                               <div className='div'></div>
                               <p>or</p>
                               <div className='div'></div>
                         </div>
-                        <div className='google-btn'>
+                        <div onClick={googleSign} className='google-btn'>
                               <div>
                                     <FcGoogle className='icon'></FcGoogle></div> <span className='text'>Continue With Google</span>
                         </div>

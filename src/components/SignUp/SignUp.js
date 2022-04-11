@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 const SignUp = () => {
 
@@ -19,6 +19,8 @@ const SignUp = () => {
             createUserWithEmailAndPassword,
 
             error] = useCreateUserWithEmailAndPassword(auth);
+
+      const [sendEmailVerification, sending,] = useSendEmailVerification(auth)
 
       const emailHendeler = e => {
             setEmail(e.target.value)
@@ -42,6 +44,7 @@ const SignUp = () => {
                   return
             }
             createUserWithEmailAndPassword(email, password)
+            sendEmailVerification(email)
 
       }
 

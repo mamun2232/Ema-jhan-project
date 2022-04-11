@@ -39,7 +39,9 @@ border-radius: 8px;
 font-size: 20px;
 padding: 0px 5px;
 }
-
+.submit-btn{
+      cursor: pointer;
+}
 .submit-btn input{
       width: 425px;
 height: 55px;
@@ -76,6 +78,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 border-radius: 8px;
+cursor: pointer;
 }
 
 .google-btn .icon{
@@ -85,4 +88,12 @@ border-radius: 8px;
 }
 .google-btn .text{
       font-size: 20px;
+}
+
+.forgatePass{
+      text-align: center;
+      margin-top: 20px;
+      color: rgb(22, 112, 222);
+      font-weight: 600;
+      cursor: pointer;
 }
